@@ -1,0 +1,20 @@
+Package: ESPgenlasso
+Type: Package
+Title: GenLasso for Rank-deficient Design Matrices
+Version: 0.1.0
+Author: Jaesung Hwang, Yongdai Kim
+Maintainer: Jaesung Hwang <postechiminuru@gmail.com>
+Description: Compute the Exact Solution Path of generalized lasso problems for rank-deficient design matrices. 
+For some specific penalty matrices, e.g. fused lasso, which contains lasso penalty, we implement two functions. One is to find a minimal (or/and) maximal l1 norm solution and the other is to find a maximal l infinity norm solution. 
+License: GPL
+Encoding: UTF-8
+Imports:
+	genlasso,
+	limSolve,
+	optiSolve,
+	svd,
+	irlba,
+	MASS,
+	Matrix,
+	stringr
+RoxygenNote: 7.1.1
