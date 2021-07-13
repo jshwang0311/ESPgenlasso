@@ -183,10 +183,14 @@ ESPgenlasso <- function(y, X, D, genlasso.option=F, thres.lambda = 0.1, iter = 1
 
     delta.mat[which(abs(delta.mat)<tol)] <- 0
     delta.mat.slope[which(abs(delta.mat.slope)<tol)] <- 0
-    rownames(u.mat) <- apply(u.mat,1,function(x) max(abs(x)))
+
     beta <- .ginv_ftn(t(X) %*% X, tol) %*% (matrix(rep(t(X) %*% y, times=length(lbd)), dim(X)[2], length(lbd)) - t(D) %*% t(u.mat)) - w.mat %*% (t(delta.mat)[,-1])
     beta <- cbind(beta , .ginv_ftn(t(X) %*% X, tol) %*% (t(X) %*% y) )
-    colnames(beta)[dim(beta)[2]] <- "0"
+    u.mat <- rbind(u.mat,rep(0,m))
+    lbd <- c(lbd,0)
+
+    rownames(u.mat) <- apply(u.mat,1,function(x) max(abs(x)))
+    colnames(beta) <- rownames(u.mat)
     fit <- X %*% beta
     out <- list(u = t(u.mat), delta = (delta.mat), delta_slope = delta.mat.slope,
                 lambda = lbd, hit = hit, beta = beta, fit = fit,

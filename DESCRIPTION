@@ -15,5 +15,5 @@ Imports:
 	irlba,
 	MASS,
 	Matrix,
-	stringr
+	parallel
 RoxygenNote: 7.1.1

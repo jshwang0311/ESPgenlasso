@@ -17,7 +17,7 @@ spec.l1.solution <- function(object, lambda.seq, min.indices = c(), max.indices 
   if(contain.lasso$check && (length(min.indices)!=0 || length(max.indices)!=0) && (length(object$W)!=0)){
     spec.beta.indices <- 0
     for(lambda in lambda.seq){
-      spec.beta.indices =+ 1
+      spec.beta.indices <- spec.beta.indices + 1
       object.beta <- get.beta(object, lambda , tol)
       object.u <- get.u(object,lambda)
       sgn.vec <- sign(object.u)
@@ -52,5 +52,6 @@ spec.l1.solution <- function(object, lambda.seq, min.indices = c(), max.indices 
       warning("Not implemented in this penalty matrix.\nImplemented only for the penalty matrix including lasso.")
     }
   }
+  return(spec.beta.list)
 }
 
